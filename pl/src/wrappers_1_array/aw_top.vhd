@@ -53,7 +53,7 @@ architecture structual of aw_top is
    signal rst_cnt : unsigned(31 downto 0) := (others => '0'); --125 mhz, 8 ns,
    signal rst_int : std_logic := '1';
    signal ws_value : std_logic_vector(31 downto 0) := "00000000000000001011111010111100";
-   --signal ws_value : std_logic_vector(31 downto 0) := std_logic_vector(to_unsigned(48825,32));    this is a much better solution, untested atm
+   constant WS_VALUE : std_logic_vector(31 downto 0) := std_logic_vector(to_unsigned(48825,32));    this is a much better solution, PERIOD INSTEAD OF VALUE?
    signal ws_value_out : std_logic_vector(31 downto 0);
 
 
@@ -76,7 +76,7 @@ begin
             rst_int <= '1';
         elsif sys_clock'event and sys_clock = '1' then
 
-        if rst_cnt =  x"01ffffff" then --about 3 sec
+        if rst_cnt =  x"01ffffff" then --about 3 sec USE UNSIGNED OR INTEGER EASIER TO SEE
       --  if rst_cnt =  x"00000fff" then
            rst_int <= '0';
          else
